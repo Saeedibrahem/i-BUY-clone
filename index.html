@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>i-Buy-Saeed Ebrahim</title>
+    <link rel="stylesheet" href="./assets/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/notyf.min.css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./assets/css/hint.min.css" />
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+
+  <body>
+    <div class="d-flex loading">
+      <i class="fa-solid fa-spinner spin"></i>
+    </div>
+    <div class="navBar__container">
+      <div class="navbar container">
+        <div class="navBar__rightSide d-flex">
+          <div
+            class="navbar__toggle-menu d-flex popup-event"
+            data-id="category__menu"
+          >
+            <i class="fa-solid fa-bars-staggered"></i>
+          </div>
+          <div class="logo">
+            <a href="/">
+              <img
+                src="./assets/images/ibuy-logo.png "
+                class="w-100"
+                alt="logo"
+            /></a>
+          </div>
+          <div class="searchbar header_searchbar position-relative">
+            <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="إبحث هنا عن أى شئ تريده..."
+            />
+            <div class="search__prodcut hidden"></div>
+          </div>
+        </div>
+        <div class="navList-container">
+          <ul class="nav__list d-flex gap-3">
+            <li class="loginBtn popup-event py-2" data-id="login">
+              <a><i class="fa-regular fa-user"></i> تسجيل الدخول</a>
+            </li>
+            <li class="myUser py-2" data-id="login">
+              <a href="/myAccount.html"
+                ><i class="fa-regular fa-user"></i> حسابي</a
+              >
+            </li>
+            <li class="py-2 position-relative || wishlist">
+              <a><i class="fa-regular fa-heart"></i> المفضلة </a>
+              <span class="wishlist-counter">0</span>
+            </li>
+            <li class="py-2 popup-event position-relative" data-id="cart__menu">
+              <a><i class="fa-solid fa-cart-shopping"></i> عربة التسوق</a>
+              <span class="cart-counter">0</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="new__navList-container">
+      <div class="row w-100 g-0 align-items-center">
+        <div class="col p-1 py-2 p-sm-3">
+          <div class="res_icon text-center">
+            <a href="/">
+              <div class="nN__icon">
+                <i class="fa-solid fa-house"></i>
+              </div>
+              <div class="lh-1 nN__title">الرئيسية</div>
+            </a>
+          </div>
+        </div>
+        <div class="col p-1 py-2 p-sm-3">
+          <div
+            class="res_icon text-center popup-event"
+            data-id="category__menu"
+          >
+            <div class="nN__icon">
+              <i class="fa-solid fa-bars-staggered"></i>
+            </div>
+            <div class="lh-1 nN__title">الأقسام</div>
+          </div>
+        </div>
+        <div class="col p-1 py-2 p-sm-3">
+          <div
+            class="res_icon text-center popup-event loginBtn"
+            data-id="login"
+          >
+            <div class="nN__icon">
+              <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="lh-1 nN__title">تسجيل الدخول</div>
+          </div>
+          <div class="res_icon text-center myUser">
+            <a href="/myAccount.html">
+              <div class="nN__icon">
+                <i class="fa-regular fa-user"></i>
+              </div>
+              <div class="lh-1 nN__title">حسابي</div>
+            </a>
+          </div>
+        </div>
+        <div class="col p-1 py-2 p-sm-3">
+          <div class="res_icon text-center new__wishlist">
+            <a>
+              <div class="nN__icon">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+              <div class="lh-1 nN__title">المفضلة</div>
+            </a>
+          </div>
+        </div>
+        <div class="col p-1 py-2 p-sm-3">
+          <div class="res_icon text-center popup-event" data-id="cart__menu">
+            <div class="nN__icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="lh-1 nN__title">السلة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="slider-section">
+      <div class="owl-carousel owl-theme first-slider mb-5">
+        <div class="item">
+          <img
+            class="img-lg || d-none d-sm-block"
+            src="./assets/images/Slides-PC-06.jpg "
+            alt=""
+          />
+          <img
+            class="img-sm || d-block d-sm-none"
+            src="./assets/images/Slides-Mobile-02.png"
+            alt=""
+          />
+        </div>
+        <div class="item">
+          <img
+            class="img-lg || d-none d-sm-block"
+            src="./assets/images/Slides-PC-05.jpg"
+            alt=""
+          />
+          <img
+            class="img-sm || d-block d-sm-none"
+            src="./assets/images/Slides-Mobile-04.jpg"
+            alt=""
+          />
+        </div>
+        <div class="item">
+          <img
+            class="img-lg || d-none d-sm-block"
+            src="./assets/images/Slides-PC-02.jpg"
+            alt=""
+          />
+          <img
+            class="img-sm || d-block d-sm-none"
+            src="./assets/images/Slides-Mobile-05.jpg"
+            alt=""
+          />
+        </div>
+        <div class="item">
+          <img
+            class="img-lg || d-none d-sm-block"
+            src="./assets/images/Slides-PC-04.jpg"
+            alt=""
+          />
+          <img
+            class="img-sm || d-block d-sm-none"
+            src="./assets/images/Slides-Mobile-06.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+    <section class="info d-flex justify-content-center">
+      <div class="container my-4">
+        <div class="row g-0">
+          <div class="col-lg-3 col-md-6 p-2">
+            <div class="d-flex gap-2 align-items-center box-container">
+              <div class="">
+                <img
+                  src="./assets/images/feature-3.png.png"
+                  alt=""
+                  width="50px"
+                />
+              </div>
+              <div class="m-1">
+                <h2 class="m-1">شحن سريع</h2>
+                <p class="m-0">
+                  سعر شحن موحد لجميع المحافظات ويصلك في أقل من 72 ساعة
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 p-2">
+            <div class="d-flex gap-2 align-items-center box-container">
+              <div class="">
+                <img
+                  src="./assets/images/quality-badge-1.png"
+                  alt=""
+                  width="50px"
+                />
+              </div>
+              <div class="m-1">
+                <h2 class="m-1">ضمان الجودة</h2>
+                <p class="m-0">
+                  خامات عالية الجودة ومرونه فى طلبات الاستبدال والاسترجاع
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 p-2">
+            <div class="d-flex gap-2 align-items-center box-container">
+              <div class="">
+                <img
+                  src="./assets/images/feature-1.png.png"
+                  alt=""
+                  width="50px"
+                />
+              </div>
+              <div class="m-1">
+                <h2 class="m-1">دعم فني</h2>
+                <p class="m-0">
+                  دعم فني على مدار اليوم للإجابة على اي استفسار لديك
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 p-2">
+            <div class="d-flex gap-2 align-items-center box-container">
+              <div class="">
+                <img
+                  src="./assets/images/feature-2.png.png"
+                  alt=""
+                  width="50px"
+                />
+              </div>
+              <div class="m-1">
+                <h2 class="m-1">استبدال سهل</h2>
+                <p class="m-0">
+                  يمكنك استبدال واسترجاع المنتج في حالة عدم مطابقة المواصفات.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="category__section container d-none d-sm-block">
+      <div class="category__title d-flex py-3 w-100 gap-2">
+        <h4>تسوق عبر الأقسام</h4>
+        <div class="break_line flex-grow-1"></div>
+        <button class="btn home__btn">عرض الكل</button>
+      </div>
+      <div class="category__items d-flex g-0">
+        <div class="category">
+          <img src="./assets/images/category/Cat-01.jpg" alt="" class="w-100" />
+        </div>
+        <div class="category">
+          <img src="./assets/images/category/Cat-02.png" alt="" class="w-100" />
+        </div>
+        <div class="category">
+          <img src="./assets/images/category/Cat-03.png" alt="" class="w-100" />
+        </div>
+        <div class="category">
+          <img src="./assets/images/category/Cat-04.png" alt="" class="w-100" />
+        </div>
+      </div>
+    </div>
+    <div class="container d-block d-sm-none ">
+      <div class="category__title d-flex py-3 w-100 gap-2">
+        <h4>تسوق عبر الأقسام</h4>
+        <div class="break_line flex-grow-1"></div>
+        <button class="btn home__btn">عرض الكل</button>
+      </div>
+      <div class="owl-carousel mobileSwiper owl-theme">
+        <div class="item">
+          <img src="./assets/images/category/Cat-01.jpg" alt="" class="w-100" />
+        </div>
+        <div class="item">
+          <img src="./assets/images/category/Cat-02.png" alt="" class="w-100" />
+        </div>
+        <div class="item">
+          <img src="./assets/images/category/Cat-03.png" alt="" class="w-100" />
+        </div>
+        <div class="item">
+          <img src="./assets/images/category/Cat-04.png" alt="" class="w-100" />
+        </div>
+      </div>
+    </div>
+    <div class="product__slider container">
+      <div class="offer__product-title d-flex py-3 w-100 gap-2">
+        <h4 class="d-flex gap-1">
+          <strong
+            style="
+              border-radius: 5px;
+              color: aliceblue;
+              background-color: var(--second-color);
+              width: fit-content;
+            "
+            class="d-block p-1"
+          >
+            %
+          </strong>
+          عرض اليوم
+        </h4>
+        <div class="break_line flex-grow-1"></div>
+        <div class="timer"></div>
+      </div>
+      <div class="owl-carousel products-slider owl-theme">
+        <!-- <div class="item">
+          <div class="">
+            <img
+              src="./assets/images/products/BRM-28-WHT-GRY-WEB-300x300.jpg"
+            />
+          </div>
+          <div class="">
+            <h2>Lorem ipsum dolor sit.</h2>
+            <p>
+              <span class="old__price">$45</span>
+              <span class="new__price">$45</span>
+            </p>
+            <div class="colors">
+              <div style="background-color: blue" class="black__color"></div>
+              <div style="background-color: blue" class="black__color"></div>
+              <div style="background-color: blue" class="black__color"></div>
+              <div style="background-color: blue" class="black__color"></div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="day__offer-img">
+      <img
+        class="|| d-none d-sm-block w-100"
+        src="./assets/images/Slide-PC-07.jpg "
+        alt=""
+      />
+      <img
+        class="|| d-block d-sm-none w-100"
+        src="./assets/images/Slide-Mobile-07.jpg"
+        alt=""
+      />
+    </div>
+    <div class="product__slider container">
+      <div class="offer__product-title d-flex py-3 w-100 gap-2">
+        <h4 class="d-flex gap-1">
+          
+          الأكثر مبيعاً
+        </h4>
+        <div class="break_line flex-grow-1"></div>
+        <button class="btn home__btn">عرض الكل</button>
+      </div>
+      <div class="owl-carousel products-slider owl-theme">
+        <!-- <div class="item">
+          <div class="">
+            <img
+              src="./assets/images/products/BRM-28-WHT-GRY-WEB-300x300.jpg"
+            />
+          </div>
+          <div class="">
+            <h2>Lorem ipsum dolor sit.</h2>
+            <p>
+              <span class="old__price">$45</span>
+              <span class="new__price">$45</span>
+            </p>
+            <div class="colors">
+              <div style="background-color: blue" class="black__color"></div>
+              <div style="background-color: blue" class="black__color"></div>
+              <div style="background-color: blue" class="black__color"></div>
+              <div style="background-color: blue" class="black__color"></div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="comments__slider container product__slider">
+      <div class="offer__product-title d-flex py-3 w-100 gap-2">
+        <h4>آراء عملاؤنا</h4>
+        <div class="break_line flex-grow-1"></div>
+        <button class="btn home__btn">تسوق الآن</button>
+      </div>
+      <div class="owl-carousel comments__slider owl-theme">
+        <div
+          class="item p-2"
+          style="border: 1px solid var(--border-color); border-radius: 9px"
+        >
+          <div class="">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 px-1"
+            >
+              <img
+                src="./assets/images/comment.png"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <i
+                class="fa-brands fa-facebook"
+                style="font-size: 30px; color: #425a96"
+              ></i>
+            </div>
+            <div class="comment__name">
+              <p
+                class="mb-1 px-2"
+                style="height: 50px; overflow: auto; font-size: 14px"
+              >
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi,
+                non?
+              </p>
+              <strong> Saeed Ebrahim</strong>
+            </div>
+          </div>
+        </div>
+        <div
+          class="item p-2"
+          style="border: 1px solid var(--border-color); border-radius: 9px"
+        >
+          <div class="">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 px-1"
+            >
+              <img
+                src="./assets/images/comment.png"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <i
+                class="fa-brands fa-facebook"
+                style="font-size: 30px; color: #425a96"
+              ></i>
+            </div>
+            <div class="comment__name">
+              <p
+                class="mb-1 px-2"
+                style="height: 50px; overflow: auto; font-size: 14px"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <strong> Ahmed Ebrahim</strong>
+            </div>
+          </div>
+        </div>
+        <div
+          class="item p-2"
+          style="border: 1px solid var(--border-color); border-radius: 9px"
+        >
+          <div class="">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 px-1"
+            >
+              <img
+                src="./assets/images/comment.png"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <i
+                class="fa-brands fa-facebook"
+                style="font-size: 30px; color: #425a96"
+              ></i>
+            </div>
+            <div class="comment__name">
+              <p
+                class="mb-1 px-2"
+                style="height: 50px; overflow: auto; font-size: 14px"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <strong> Ahmed Sasa</strong>
+            </div>
+          </div>
+        </div>
+        <div
+          class="item p-2"
+          style="border: 1px solid var(--border-color); border-radius: 9px"
+        >
+          <div class="">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 px-1"
+            >
+              <img
+                src="./assets/images/comment.png"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <i
+                class="fa-brands fa-facebook"
+                style="font-size: 30px; color: #425a96"
+              ></i>
+            </div>
+            <div class="comment__name">
+              <p
+                class="mb-1 px-2"
+                style="height: 50px; overflow: auto; font-size: 14px"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <strong> Sasa Khaled</strong>
+            </div>
+          </div>
+        </div>
+        <div
+          class="item p-2"
+          style="border: 1px solid var(--border-color); border-radius: 9px"
+        >
+          <div class="">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 px-1"
+            >
+              <img
+                src="./assets/images/comment.png"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <i
+                class="fa-brands fa-facebook"
+                style="font-size: 30px; color: #425a96"
+              ></i>
+            </div>
+            <div class="comment__name">
+              <p
+                class="mb-1 px-2"
+                style="height: 50px; overflow: auto; font-size: 14px"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <strong> Ahmed Lolo</strong>
+            </div>
+          </div>
+        </div>
+        <div
+          class="item p-2"
+          style="border: 1px solid var(--border-color); border-radius: 9px"
+        >
+          <div class="">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 px-1"
+            >
+              <img
+                src="./assets/images/comment.png"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <i
+                class="fa-brands fa-facebook"
+                style="font-size: 30px; color: #425a96"
+              ></i>
+            </div>
+            <div class="comment__name">
+              <p
+                class="mb-1 px-2"
+                style="height: 50px; overflow: auto; font-size: 14px"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <strong> Tamer Hema</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer__section">
+        <div class="row g-0 footer__container container">
+          <div class="col-6 col-lg-3 p-2 p-sm-3">
+            <div class="footer__logo">
+              <div class="logo__image pb-3">
+                <a href="/">
+                  <img
+                    src="./assets/images/footer-logo.png"
+                    width="100px"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <div class="footer__title">
+                <p>
+                  شركتنا هي أكبر شركة متخصصة لبيع الاحذية أونلاين وتوصيلها حتي
+                  المنزل.
+                </p>
+              </div>
+              <div class="social__links">
+                <a href="" target="_blank">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="" target="_blank">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="" target="_blank">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 p-2 p-sm-3">
+            <div class="footer__list-container">
+              <ul class="footer__list">
+                <li>
+                  <strong>عن IBUY</strong>
+                </li>
+                <li><a href="">من نحن</a></li>
+                <li><a href="">تواصل معنا</a></li>
+                <li><a href="">سياسة الخصوصية</a></li>
+                <li><a href="">سياسة الإستبدال والإسترجاع</a></li>
+                <li><a href="">تتبع طلبك</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 p-2 p-sm-3">
+            <div class="footer__list-container">
+              <ul class="footer__list">
+                <li>
+                  <a><strong>فروعنا</strong></a>
+                </li>
+                <li><a href="">فرع الإسكندرية</a></li>
+                <li><a href="">فرع طنطا</a></li>
+                <li><a href="">فرع المحلة</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 p-2 p-sm-3">
+            <div class="footer__list-container">
+              <ul class="footer__list">
+                <li>
+                  <a><strong>تحتاج للمساعده ؟</strong></a>
+                </li>
+                <li>
+                  <a href="">
+                    <i class="fa-solid fa-envelope"></i> s3eedeb@gmail.com</a
+                  >
+                </li>
+                <li>
+                  <a><strong>إشترك فى نشرتنا</strong></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="login__section-container" id="login">
+      <div class="overlay || clickToClose" data-id="login"></div>
+      <div class="center-content">
+      
+        <div class="box__container">
+          <div
+          class="close__icon d-flex justify-content-center align-items-center || clickToClose"
+          data-id="login"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+          <div class="row g-0">
+            <div class="col-3 login-img d-md-block d-none"></div>
+            <div class="col">
+              <form action="" class="active">
+                <div class="flex-grow-1 p-3 gap-4 d-flex flex-column">
+                  <div class="login-title d-flex justify-content-center mt-3">
+                    <button
+                      type="button"
+                      class="btn btn-dark px-2 py-3 px-sm-4 py-sm-3"
+                    >
+                      تسجيل الدخول
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-light px-2 py-3 px-sm-4 py-sm-3"
+                    >
+                      حساب جديد
+                    </button>
+                  </div>
+                  <div class="login-cont">
+                    <div class="login__inputs d-flex mb-4">
+                      <div class="input__icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                      </div>
+                      <input
+                        type="email"
+                        required
+                        name="email"
+                        placeholder="البريد الإلكتروني"
+                        class="flex-grow-1 border-0"
+                      />
+                    </div>
+                    <div class="login__inputs d-flex">
+                      <div class="input__icon">
+                        <i class="fa-solid fa-key"></i>
+                        <div class="show-password">
+                          <i class="fa-regular fa-eye"></i>
+                          <i class="fa-regular fa-eye-slash"></i>
+                        </div>
+                      </div>
+                      <input
+                        name="password"
+                        required
+                        type="password"
+                        placeholder="كلمة المرور"
+                        class="flex-grow-1 border-0"
+                        id="password"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="remper__password d-flex gap-3 justify-content-between"
+                  >
+                    <a href="">نسيت كلمة المرور ؟</a>
+                    <span> <input type="checkbox" /> تذكرني</span>
+                  </div>
+                  <div class="submit__btn d-flex">
+                    <button
+                      type="submit"
+                      class="flex-grow-1 border-0 btn btn-dark"
+                      id="submit__btn"
+                    >
+                      تسجيل الدخول
+                    </button>
+                    <button
+                      type="submit"
+                      class="flex-grow-1 border-0 btn btn-dark"
+                    >
+                      حساب جديد
+                    </button>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="text-center login-line">
+                      <span>أو سجل الدخول بإستخدام</span>
+                    </div>
+                    <div
+                      class="d-flex justify-content-center align-content-center gap-2 || register-with"
+                    >
+                      <div class="btn btn-danger p-2 px-4 p-sm-3 px-sm-5">
+                        <span>Google</span>
+                      </div>
+                      <div class="btn btn-primary p-2 px-4 p-sm-3 px-sm-5">
+                        <span>Facebook</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-container" id="category__menu">
+      <div class="overlay || || clickToClose" data-id="category__menu"></div>
+      <div class="side-modal">
+        <div class="d-flex flex-column p-4">
+          <div
+            class="close__icon d-flex justify-content-center align-items-center || clickToClose"
+            data-id="category__menu"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <a href="/" class="logo pb-3">
+            <img src="./assets/images/ibuy-logo.png" alt="" width="90px" />
+          </a>
+          <div class="side__menu-category">
+            <ul class="gap-3 d-flex flex-column">
+              <li><a href="">جميع المنتجات</a></li>
+              <li><a href="">أحذية رجالي</a></li>
+              <li><a href="">صندل وسليبر</a></li>
+              <li><a href="">إكسسوارات</a></li>
+              <li><a href="">أحذية نسائية</a></li>
+              <li><a href="">أحذية أطفالي</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-container" id="cart__menu">
+      <div class="overlay || clickToClose" data-id="cart__menu"></div>
+      <div class="cart-modal">
+        <div class="d-flex flex-column">
+          <div class="cart__title d-flex flex-row">
+            <div
+              class="close__icon d-flex justify-content-center align-items-center || clickToClose"
+              data-id="cart__menu"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="p-0 text-center">
+              <h3 class="m-0">سلة التسوق</h3>
+            </div>
+          </div>
+          <div class="cart__menu-items">
+            <ul class="gap-3 d-flex flex-column cart__products"></ul>
+            <div class="checkout mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/notyf.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/main.js" type="module"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script>
+      $(".owl-carousel.first-slider").owlCarousel({
+        loop: true,
+        rtl: true,
+        autoplay: true,
+        margin: 10,
+        autoplayTimeout: 5000,
+        nav: true,
+        navText: [
+          '<i class="fas fa-chevron-left"></i>',
+          '<i class="fas fa-chevron-right"></i>',
+        ],
+        responsive: {
+          0: {
+            items: 1,
+          },
+        },
+      });
+      $(".owl-carousel.mobileSwiper").owlCarousel({
+        loop: true,
+        rtl: true,
+        margin: 10,
+        nav: true,
+        navText: [
+          '<i class="fas fa-chevron-left"></i>',
+          '<i class="fas fa-chevron-right"></i>',
+        ],
+        responsive: {
+          0: {
+            items: 2,
+          },
+        },
+      });
+      $(".owl-carousel.comments__slider").owlCarousel({
+        loop: true,
+        rtl: true,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 5000,    
+        responsive: {
+          0: {
+            items: 1,
+          },
+
+          700: {
+            items: 2,
+          },
+          950: {
+            items: 3,
+          },
+          1150: {
+            items: 4,
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

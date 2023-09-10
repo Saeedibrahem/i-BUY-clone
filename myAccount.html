@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>i-Buy-Saeed Ebrahim</title>
+  <link rel="stylesheet" href="./assets/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/css/notyf.min.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/wishlist.css" />
+  <link rel="stylesheet" href="./assets/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="./assets/css/hint.min.css" />
+  <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css" />
+</head>
+
+<body>
+  <div class="d-flex loading">
+    <i class="fa-solid fa-spinner spin"></i>
+  </div>
+  <div class="navBar__container">
+    <div class="navbar container">
+      <div class="navBar__rightSide d-flex">
+        <div class="navbar__toggle-menu d-flex popup-event" data-id="category__menu">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </div>
+        <div class="logo">
+          <a href="/">
+            <img src="./assets/images/ibuy-logo.png " class="w-100" alt="logo" /></a>
+        </div>
+        <div class="searchbar header_searchbar position-relative">
+          <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <input id="searchInput" type="search" placeholder="إبحث هنا عن أى شئ تريده..." />
+          <div class="search__prodcut hidden"></div>
+        </div>
+      </div>
+      <div class="navList-container">
+        <ul class="nav__list d-flex gap-3">
+          <li class="loginBtn popup-event py-2" data-id="login">
+            <a><i class="fa-regular fa-user"></i> تسجيل الدخول</a>
+          </li>
+          <li class="myUser py-2" data-id="login">
+            <a href="/myAccount.html"><i class="fa-regular fa-user"></i> حسابي</a>
+          </li>
+          <li class="py-2 position-relative || wishlist">
+            <a><i class="fa-regular fa-heart"></i> المفضلة </a>
+            <span class="wishlist-counter">0</span>
+          </li>
+          <li class="py-2 popup-event position-relative" data-id="cart__menu">
+            <a><i class="fa-solid fa-cart-shopping"></i> عربة التسوق</a>
+            <span class="cart-counter">0</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="new__navList-container">
+    <div class="row w-100 g-0 align-items-center">
+      <div class="col p-1 py-2 p-sm-3">
+        <div class="res_icon text-center">
+          <a href="/">
+            <div class="nN__icon">
+              <i class="fa-solid fa-house"></i>
+            </div>
+            <div class="lh-1 nN__title">الرئيسية</div>
+          </a>
+        </div>
+      </div>
+      <div class="col p-1 py-2 p-sm-3">
+        <div class="res_icon text-center popup-event" data-id="category__menu">
+          <div class="nN__icon">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </div>
+          <div class="lh-1 nN__title">الأقسام</div>
+        </div>
+      </div>
+      <div class="col p-1 py-2 p-sm-3">
+        <div class="res_icon text-center popup-event loginBtn" data-id="login">
+          <div class="nN__icon">
+            <i class="fa-regular fa-user"></i>
+          </div>
+          <div class="lh-1 nN__title">تسجيل الدخول</div>
+        </div>
+        <div class="res_icon text-center myUser">
+          <a href="/myAccount.html">
+            <div class="nN__icon">
+              <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="lh-1 nN__title">حسابي</div>
+          </a>
+        </div>
+      </div>
+      <div class="col p-1 py-2 p-sm-3">
+        <div class="res_icon text-center new__wishlist">
+          <a>
+            <div class="nN__icon">
+              <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="lh-1 nN__title">المفضلة</div>
+          </a>
+        </div>
+      </div>
+      <div class="col p-1 py-2 p-sm-3">
+        <div class="res_icon text-center popup-event" data-id="cart__menu">
+          <div class="nN__icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <div class="lh-1 nN__title">السلة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero__banner">
+    <div class="banner__overlay || clickToClose"></div>
+    <div class="container page__title">
+      <header>
+        <h1 class="entry-title">حسابي</h1>
+        <div>
+          <a href="index.html">الرئيسية</a><span> / </span>
+          <span>حسابي</span>
+        </div>
+      </header>
+    </div>
+  </div>
+  <div class="container py-5">
+    <div class="px-1 px-sm-3">
+      <div class="">
+        <div class="d-flex gap-3">
+          <div class="account__dashboard w-100">
+            <div class="dashboardList d-flex gap-3 p-sm-3 py-sm-5 p-1 py-2 flex-md-row flex-column">
+              <div class="d-flex align-items-start p-1 py-3 w-25 box_ss" >
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <div class="d-flex align-items-center gap-2 p-3">
+                    <img src="./assets/images/feature-1.png.png" alt="" height="50px" />
+                    <p class="m-0" id="userName"></p>
+                  </div>
+                  <button class="nav-link active" id="v-pills-orders-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-orders" type="button" role="tab" aria-controls="v-pills-orders"
+                    aria-selected="true"> الطلبات </button>
+                  <button class="nav-link" id="v-pills-address-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-address" type="button" role="tab" aria-controls="v-pills-address"
+                    aria-selected="false"> العنوان </button>
+                  <button class="nav-link" id="v-pills-profile-setting-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-profile-setting" type="button" role="tab"
+                    aria-controls="v-pills-profile-setting" aria-selected="false"> تفاصيل الحساب </button>
+                  <button class="nav-link || logOut " id="v-pills-logOut-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-logOut" type="button" role="tab" aria-controls="v-pills-logOut"
+                    aria-selected="false"> تسجيل الخروج </button>
+                </div>
+              </div>
+              <div class="bg-dark bg-opacity-25 shadow " style="max-height: 300px; width: 2px; "></div>
+              <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
+              <div class="dashboard__content p-1 py-3 ">
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-orders" role="tabpanel"
+                    aria-labelledby="v-pills-orders-tab" tabindex="0">
+                    <div class="order__list">
+                      <div class="d-flex w-100 justify-content-between bg-light p-1 p-sm-3 shadow">
+                        <p>لم يتم تنفيذ أي طلب بعد.</p>
+                        <a href="/" class="btn home__btn">تصفح المنتجات</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab"
+                    tabindex="0">
+                    <div class="address__list">
+                      <p> العناوين التالية سيتم استخدامها في صفحة إتمام الطلب بشكل افتراضي. </p>
+                      <h3>عنوان الفاتورة</h3>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-profile-setting" role="tabpanel"
+                    aria-labelledby="v-pills-profile-setting-tab" tabindex="0">
+                    <div class="profile__setting">
+                      <div class="container">
+                        <form class="row g-3" id="accountForm">
+                          <div class="col-md-6">
+                            <label for="validationDefault01" class="form-label">الإسم الأول</label>
+                            <span class="text-danger" id="inputGroupPrepend2">*</span>
+                            <input type="text" name="firstName" class="form-control" id="validationDefault01"
+                              placeholder="أكتب إسمك" />
+                          </div>
+                          <div class="col-md-6">
+                            <label for="validationDefault02" class="form-label">الإسم الأخير</label>
+                            <span class="text-danger" id="inputGroupPrepend2">*</span>
+                            <input type="text" name="lastName" class="form-control" id="validationDefault02"
+                              placeholder="أكتب إسمك" />
+                          </div>
+                          <div class="col-md-12">
+                            <label for="validationDefaultUsername" class="form-label">إسم العرض</label>
+                            <span class="text-danger" id="inputGroupPrepend2">*</span>
+                            <input type="text" name="userName" class="form-control" id="validationDefaultUsername" />
+                          </div>
+                          <div class="col-md-12">
+                            <label for="validationDefault03" class="form-label">البريد الإلكتروني</label>
+                            <span class="text-danger" id="inputGroupPrepend2">*</span>
+                            <input type="email" name="userEmail" class="form-control" id="validationDefault03" />
+                          </div>
+                          <div class=" p-2 mt-3  row g-0 reset__password">
+                            <div class="reset__span"> تغيير كلمة المرور </div>
+                            <div class="col-md-12 px-2 mt-3">
+                              <label for="validationDefault04" class="form-label">كلمة المرور الحالية (يجب إدخال كلمة
+                                المرور لحفظ التغييرات)</label>
+                              <input type="password" name="userOldPass" class="form-control" id="validationDefault04"
+                                required />
+                            </div>
+                            <div class="col-md-12 px-2 mt-3">
+                              <label for="validationDefault05" class="form-label">كلمة المرور الجديدة (اترك الحقل فارغاً
+                                إذا كنت لا تودّ تغييرها)</label>
+                              <input type="password" name="userNewPass" class="form-control" id="validationDefault05" />
+                            </div>
+                            <div class="col-md-12 px-2 mt-3">
+                              <label for="validationDefault06" class="form-label">تأكيد كلمة المرور الجديدة</label>
+                              <input type="password" name="userNewPass2" class="form-control"
+                                id="validationDefault06" />
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <button class="btn  home__btn" type="submit"> حفظ التغييرات </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer__section">
+      <div class="row g-0 footer__container container ">
+        <div class="col-6 col-lg-3   p-3">
+          <div class="footer__logo">
+            <div class="logo__image pb-3">
+              <a href="/">
+                <img src="./assets/images/footer-logo.png" width="100px" alt="" />
+
+              </a>
+            </div>
+            <div class="footer__title">
+              <p>
+                شركتنا هي أكبر شركة متخصصة لبيع الاحذية أونلاين وتوصيلها حتي
+                المنزل.
+              </p>
+            </div>
+            <div class="social__links">
+              <a href="" target="_blank">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a href="" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3   p-3">
+          <div class="footer__list-container">
+            <ul class="footer__list">
+              <li>
+                <strong>عن IBUY</strong>
+              </li>
+              <li><a href="">من نحن</a></li>
+              <li><a href="">تواصل معنا</a></li>
+              <li><a href="">سياسة الخصوصية</a></li>
+              <li><a href="">سياسة الإستبدال والإسترجاع</a></li>
+              <li><a href="">تتبع طلبك</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3   p-3">
+          <div class="footer__list-container">
+            <ul class="footer__list">
+              <li>
+                <a><strong>فروعنا</strong></a>
+              </li>
+              <li><a href="">فرع الإسكندرية</a></li>
+              <li><a href="">فرع طنطا</a></li>
+              <li><a href="">فرع المحلة</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3   p-3">
+          <div class="footer__list-container">
+            <ul class="footer__list">
+              <li>
+                <a><strong>تحتاج للمساعده ؟</strong></a>
+              </li>
+              <li><a href=""> <i class="fa-solid fa-envelope"></i> s3eedeb@gmail.com</a></li>
+              <li>
+                <a><strong>إشترك فى نشرتنا</strong></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="modal-container" id="category__menu">
+    <div class="overlay || clickToClose" data-id="category__menu"></div>
+    <div class="side-modal">
+      <div class="d-flex flex-column p-4">
+        <div class="close__icon d-flex justify-content-center align-items-center || clickToClose"
+          data-id="category__menu">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="logo pb-3">
+          <img src="./assets/images/ibuy-logo.png" alt="" width="90px" />
+        </div>
+        <div class="side__menu-category">
+          <ul class="gap-3 d-flex flex-column">
+            <li><a href="">جميع المنتجات</a></li>
+            <li><a href="">أحذية رجالي</a></li>
+            <li><a href="">صندل وسليبر</a></li>
+            <li><a href="">إكسسوارات</a></li>
+            <li><a href="">أحذية نسائية</a></li>
+            <li><a href="">أحذية أطفالي</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-container" id="cart__menu">
+    <div class="overlay || clickToClose" data-id="cart__menu"></div>
+    <div class="cart-modal">
+      <div class="d-flex flex-column">
+        <div class="cart__title d-flex flex-row">
+          <div class="close__icon d-flex justify-content-center align-items-center || clickToClose"
+            data-id="cart__menu">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="p-0 text-center">
+            <h3 class="m-0">سلة التسوق</h3>
+          </div>
+        </div>
+        <div class="cart__menu-items">
+          <ul class="gap-3 d-flex flex-column cart__products">
+          </ul>
+          <div class="checkout mt-3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/notyf.min.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/myAccount.js" type="module"></script>
+</body>
+
+</html>

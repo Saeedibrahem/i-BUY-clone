@@ -1,0 +1,101 @@
+.hero__banner {
+  background-image: url(../images/login\ image.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.banner__overlay {
+  background-color: rgba(26, 32, 44, 0.6);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.page__title {
+  z-index: 3;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+.wishlist__container {
+  padding: 60px 10px;
+  min-height: 500px;
+}
+.page__title a {
+  color: #dddddd;
+  text-decoration: underline !important;
+}
+.wishlist__box-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.product-remove-box {
+  width: 35px;
+  height: 35px;
+}
+.product-remove div {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.product-remove:hover div {
+  background-color: #0000003b;
+  color: var(--second-color);
+}
+.product-thumbnail {
+  min-width: 100px;
+  max-width: 100%;
+  width: 100px;
+}
+.product-name {
+  width: 325px;
+}
+.product-name a {
+  color: var(--second-color);
+  text-decoration: underline !important;
+}
+.product-name a:hover {
+  color: var(--span-font-color);
+}
+.product-price {
+  width: 285px;
+}
+.product-date {
+  width: 215px;
+}
+
+.product-stock {
+  width: 230px;
+}
+@media (width <= 768px) {
+  .wishlist__box-title {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+.reset__password{
+  position: relative;
+  border-radius: 9px;
+  border: 1px solid var(--border-color);
+}
+.reset__span {
+  position: absolute;
+  background-color: var(--main-color);
+  top: 0;
+  right: 24px;
+  z-index: 33;
+  font-weight: bold;
+  width: fit-content;
+  transform: translateY(-50%);
+  padding: 4px;
+  border-radius: 15px;
+}
