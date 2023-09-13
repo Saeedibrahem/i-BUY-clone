@@ -560,7 +560,7 @@
                       <i class="fa-solid fa-user-plus"></i>
                     </div>
                     <input
-                      type="email"
+                      type="text"
                       required
                       name="email"
                       placeholder="البريد الإلكتروني"
@@ -677,13 +677,28 @@
       </div>
     </div>
   </div>
+  <div class="popup__container " id="popup">
+    <div class="overlay || clickToClose" data-id="popup"></div>
+    <div class="popup text-center">
+      <div class="popup__messeage d-flex flex-column gap-2 align-content-center ">
+        <div class=" ico || d-flex justify-content-center align-items-center mb-2" >
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="">
+          <p>من فضلك، قم بتسجيل الدخول لإضافة المنتجات للمفضلة</p>
+        </div>
+        <a href="/login.html" class="btn home__btn"><i class="fa-solid fa-key"></i>  تسجيل الدخول</a>
+        <button class="btn home__btn || clickToClose" data-id="popup"><i class="fa-solid fa-xmark"></i> إغلاق</button>
+      </div>
+    </div>
+    
+  </div>
   <script src="./assets/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/js/notyf.min.js"></script>
   <script src="./assets/js/product.js" type="module"></script>
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/jquery.min.js"></script>
   <script src="./assets/js/owl.carousel.min.js"></script>
-  <!-- <script src="./assets/js/product.js" type="module"></script> -->
   <script>
         $(".owl-carousel.comments__slider").owlCarousel({
       loop: true,

@@ -5,17 +5,23 @@ const notyf = new Notyf({
 });
 /*End Toast*/
 
-// ================================================================== global varibles =========================================================
+// ================================================================== global variables =========================================================
 
-let renderedProduct = [];
+let cartProducts = JSON.parse(localStorage.getItem("cart-products")) ?? [];
+let userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];
+const userData = JSON.parse(localStorage.getItem("userData")) ?? [];
+const loginForm = document.querySelector("form");
+const searchInput = document.getElementById("searchInput");
+const productSearch = document.querySelector(".search__prodcut");
+const showPassword = document.querySelector(".show-password");
+const password = document.getElementById("password");
 const cartContainer = document.querySelector(".cart__products");
 const checkout = document.querySelector(".checkout");
 const cartCounter = document.querySelector(".cart-counter");
-let cartProducts = JSON.parse(localStorage.getItem("cart-products")) ?? [];
-let userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];
 const wishlistCounter = document.querySelector(".wishlist-counter");
-const loginForm = document.querySelector("form");
-const userData = JSON.parse(localStorage.getItem("userData")) ?? [];
+const btnSelector = document.querySelector("body");
+let renderedProduct = [];
+
 
 // ================================================================== fetch func  =========================================================
 
@@ -52,16 +58,14 @@ callBack("../products.json")
             ((product.old_price - product.price) * 100) / product.old_price
           )}%</div>
           
-            <img src=${product.image[0]}  alt=""    class="img1"/> ${
-            product.image[1]
+            <img src=${product.image[0]}  alt=""    class="img1"/> ${product.image[1]
               ? `<img src=${product.image[1]} alt="" class="img2"/>`
               : ` <img src=${product.image[0]} alt="" class="img2"/>`
-          }
+            }
             </div>
             <div class="product__info">
             <div class="position-relative">
-            <span class="hint--top hint--medium position-absolute w-100 z-1 hintPos"  aria-label="${
-              product.name.ar
+            <span class="hint--top hint--medium position-absolute w-100 z-1 hintPos"  aria-label="${product.name.ar
             }">
             <span class="opacity-0">${product.name.ar}</span>
             </span>
@@ -80,12 +84,10 @@ callBack("../products.json")
             </div>
             </div>
           </a>
-            
             </div>
             `;
         });
       });
-      // products.innerHTML = "";
     }
   })
   .then(() => {
@@ -153,16 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ======================================================= global functions  ======================================================
 
-// ==================== account is login function =================
+// ==================== user is login function =================
 
 const isLogin = () => {
   let element = document.getElementById("login");
   closeModal(element);
   addIsLogin();
-  // document.querySelector("body").classList.add("isLogin");
   setWishlistHrefToWish();
-  // document.querySelector(".wishlist a").setAttribute("href","wishlist.html");
-  // document.querySelector(".new__wishlist a").setAttribute("href","wishlist.html");
 };
 
 // ==================== open & close modal function =================
@@ -242,6 +241,7 @@ if (document.querySelector("body").classList.contains("isLogin")) {
   handleWishListCounter();
   handleCartCounter();
 }
+
 // ==================== open modal by click buttons function =================
 
 const popupBtns = document.querySelectorAll(".popup-event");
@@ -265,6 +265,15 @@ clickToClose.forEach((ele) => {
   });
 });
 
+const openPopup = ()=>{
+  let element = document.getElementById("popup");
+  element.classList.add("active")
+}
+const closePopup = ()=>{
+  let element = document.getElementById("popup");
+  element.classList.remove("active")
+}
+
 // ==================== error page function =================
 
 const errorPage = (element) => {
@@ -281,7 +290,43 @@ const errorPage = (element) => {
   }, 3000);
 };
 
-// ======================================================= login & register btn active  ======================================================
+// ================== password validation func =============
+
+const passwordValidation = (target) => {
+  const lower = /[a-z]/g;
+  const upper = /[A-Z]/g;
+  const number = /[0-9]/g;
+  const special = /[!@#$%^&*]/g;
+  const length = /.{8}/g;
+  if (!target.email.value.includes(".")) {
+    return notyf.error(" يجب كتابة بريد إلكتروني صحيح");
+  } else if (!target.email.value.includes("@")) {
+    return notyf.error(" يجب كتابة بريد asas إلكتروني صحيح");
+  }
+  if (lower.test(target.password.value)) {
+  } else {
+    notyf.error("  كلمة المرور لا تحتوي على حرف صغير");
+  }
+  if (upper.test(target.password.value)) {
+  } else {
+    return notyf.error("  كلمة المرور لا تحتوي على حرف كبير");
+  }
+  if (number.test(target.password.value)) {
+  } else {
+    return notyf.error("  كلمة المرور لا تحتوي على رقم");
+  }
+  if (special.test(target.password.value)) {
+  } else {
+    return notyf.error("  كلمة المرور لا تحتوي على رمز");
+  }
+  if (length.test(target.password.value)) {
+  } else {
+    return notyf.error("  كلمة المرور أقصر من 8 خانات");
+  }
+  return false;
+};
+
+// ================= login & register btn active  ==================
 
 const loginBtn = document.querySelector(".login-title button:nth-child(1)");
 const registerBtn = document.querySelector(".login-title button:nth-child(2)");
@@ -295,55 +340,62 @@ if (loginBtn) {
     activeBtn(loginBtn, registerBtn);
   });
 }
+
 // =========================================================== login & register function =========================================================
 
-if (loginForm) {
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (e.target.classList.contains("active")) {
-      const findme = userData.find((ele) => ele.email === e.target.email.value);
-      if (findme) {
-        if (findme.password === e.target.password.value) {
-          sendDataToLocalStorage("login", findme);
-          isLogin();
-          handleWishListCounter();
-          clearInputValue(e);
-          let userName = JSON.parse(localStorage.getItem("login")).email.split(
-            "@"
-          )[0];
-          notyf.success(
-            `أهلا بك ${findme.username ? findme.username : userName}`
-          );
-          if (location.pathname.includes("login")) {
-            setTimeout(() => {
-              location.href = "/";
-            }, 2000);
+if (!location.pathname.includes("myAccount")) {
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (e.target.classList.contains("active")) {
+        const findme = userData.find(
+          (ele) => ele.email === e.target.email.value
+        );
+        if (findme) {
+          if (findme.password === e.target.password.value) {
+            sendDataToLocalStorage("login", findme);
+            isLogin();
+            handleWishListCounter();
+            clearInputValue(e);
+            let userName = JSON.parse(
+              localStorage.getItem("login")
+            ).email.split("@")[0];
+            notyf.success(
+              `أهلا بيك ❤️ ${findme.username ? findme.username : userName}`
+            );
+            if (location.pathname.includes("login")) {
+              setTimeout(() => {
+                location.href = "/";
+              }, 2000);
+            }
+          } else {
+            notyf.error("كلمة المرور خاطئة");
           }
         } else {
-          notyf.error("كلمة المرور خاطئة");
+          notyf.error(" هذا البريد غير مسجل برجاء إنشاء حساب جديد");
         }
       } else {
-        notyf.error(" هذا البريد غير مسجل برجاء إنشاء حساب جديد");
+        let newUser = {
+          email: e.target.email.value,
+          password: e.target.password.value,
+        };
+        if (!passwordValidation(e.target)) {
+          const findme = userData.find((e) => e.email === newUser.email);
+          if (findme) {
+            notyf.error("هذا البريد مسجل بالفعل يرجي تسجيل الدخول");
+          }
+          if (!findme) {
+            userData.push(newUser);
+            sendDataToLocalStorage("userData", userData);
+            loginForm.classList.add("active");
+            activeBtn(registerBtn, loginBtn);
+            clearInputValue(e);
+            notyf.success("تم تسجيل الحساب بنجاح");
+          }
+        }
       }
-    } else {
-      let newUser = {
-        email: e.target.email.value,
-        password: e.target.password.value,
-      };
-      const findme = userData.find((e) => e.email === newUser.email);
-      if (findme) {
-        notyf.error("هذا البريد مسجل بالفعل يرجي تسجيل الدخول");
-      }
-      if (!findme) {
-        userData.push(newUser);
-        sendDataToLocalStorage("userData", userData);
-        loginForm.classList.add("active");
-        activeBtn(registerBtn, loginBtn);
-        clearInputValue(e);
-        notyf.success("تم تسجيل الحساب بنجاح");
-      }
-    }
-  });
+    });
+  }
 }
 
 // ===================================================== handle add product to WishList func ==================================================
@@ -359,27 +411,21 @@ const handleWishList = (id) => {
       notyf.error("تم حذف المنتج من المفضلة");
       handleWishListCounter();
     } else {
-      // let newProd = {...findmy}
-      // let userId = userWishlist.length === 0 ? 1 : userWishlist.at(-1).user_id + 1;
-      // newProd.user_id = userId;
-      // userWishlist.push(newProd);
       userWishlist.push(findmy);
       sendDataToLocalStorage("userWishlist", userWishlist);
       notyf.success("تم إضافة المنتج إلى المفضلة");
       handleWishListCounter();
     }
   } else {
-    notyf.error("يرجي تسجيل الدخول أو إنشاء حساب جديد أولاً");
+    openPopup()
     setTimeout(() => {
-      location.href = "/login.html";
-    }, 3000);
+    closePopup()
+    }, 4500);
   }
 };
 
 // ================================================================== search bar input events =========================================================
 
-const searchInput = document.getElementById("searchInput");
-const productSearch = document.querySelector(".search__prodcut");
 searchInput.addEventListener("keyup", () => {
   if (searchInput.value.trim().length == 0) {
     productSearch.classList.add("hidden");
@@ -394,7 +440,7 @@ searchInput.addEventListener("keyup", () => {
   productSearch.innerHTML = "";
   if (newData.length === 0) {
     productSearch.innerHTML = `
-        <h2>لم يتم العثور علي المنتج</h2>
+        <p class="p-2">لم يتم العثور علي المنتج</p>
         `;
   } else {
     newData.forEach((e) => {
@@ -427,8 +473,6 @@ window.addEventListener("click", (e) => {
 
 // ================================================================== show Password event =========================================================
 
-const showPassword = document.querySelector(".show-password");
-const password = document.getElementById("password");
 if (showPassword) {
   showPassword.addEventListener("click", () => {
     if (password.getAttribute("type") === "password") {
@@ -477,14 +521,19 @@ const displayCart = () => {
     checkout.innerHTML = `
       <div class="checkout__box">
       <p class="d-flex justify-content-between"><strong>المجموع:</strong><span>${totalPrice.toFixed(
-        2
-      )} جنيه</span></p>
+      2
+    )} جنيه</span></p>
       <button class="btn hoverMeNowHot"> إتمام الطلب </button>
       <a href="/" class="btn home__btn">تابع التسوق</a>
     </div>
       `;
   } else {
     cartEmpty(cartContainer);
+    setTimeout(() => {
+      let cartModal = document.getElementById("cart__menu");
+      cartModal.classList.remove("active");
+    }, 2000);
+
   }
 };
 setInterval(() => {
@@ -493,17 +542,14 @@ setInterval(() => {
 
 // ================================================================== remove item from cart event =========================================================
 
-const removeSelect = document.querySelector("body");
-removeSelect.addEventListener("click", (e) => {
+btnSelector.addEventListener("click", (e) => {
   if (e.target.closest(".remove__btn")) {
-    if (cartProducts.length == 0) {
-      cartEmpty(cartContainer);
-    } else {
-      cartProducts = cartProducts.filter(
-        (ele) => ele.cart_id !== +e.target.closest(".remove__btn").id
-      );
+    if (cartProducts.length !== 0) {
+      cartProducts = cartProducts.filter((ele) => ele.cart_id !== +e.target.closest(".remove__btn").id);
       sendDataToLocalStorage("cart-products", cartProducts);
       notyf.error("تم حذف المنتج من السلة");
+    } else {
+      cartEmpty(cartContainer);
     }
   }
 });
@@ -514,60 +560,3 @@ function cartEmpty(container) {
   checkout.classList.add("d-none");
   container.innerHTML = `<div class=" text-center">لا توجد منتجات في سلة التسوق <a href="/" class="btn home__btn">تابع التسوق</a></div> `;
 }
-
-
-
-
-
-
-
-// let password = document.getElementById("password")
-// toggle.addEventListener("click",function(){
-//     if(password.type === "password"){
-//         password.setAttribute("type", "text")
-//         toggle.classList.add("hide")
-//     }else{
-//         password.setAttribute("type", "password")
-//         toggle.classList.remove("hide")
-//     }
-// })
-let lowercase = document.getElementById("lower")
-let uppercase = document.getElementById("upper")
-let numbercase = document.getElementById("number")
-let specialcase = document.getElementById("special")
-let contantcase = document.getElementById("contant")
-
-
-password.addEventListener("keyup",function(){
-    const lower = /[a-z]/g
-    const upper = /\b[A-Z]/g
-    const number = /[0-9]/g
-    const special = /[!@#$%^&*]/g
-    const contant = /.{8}/g
-
-    if(lower.test(password.value)){
-        lowercase.classList.add("lower")
-    }else{
-        lowercase.classList.remove("lower")
-    }
-    if(upper.test(password.value)){
-        uppercase.classList.add("upper")
-    }else{
-        uppercase.classList.remove("upper")
-    }
-    if(number.test(password.value)){
-        numbercase.classList.add("number")
-    }else{
-        numbercase.classList.remove("number")
-    }
-    if(special.test(password.value)){
-        specialcase.classList.add("special")
-    }else{
-        specialcase.classList.remove("special")
-    }
-    if(contant.test(password.value)){
-        contantcase.classList.add("contant")
-    }else{
-        contantcase.classList.remove("contant")
-    }
-})

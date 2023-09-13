@@ -1,10 +1,11 @@
 const productId = window.location.search.split("?").join("");
-const cartProducts = JSON.parse(localStorage.getItem("cart-products")) ?? [];
-const btnSelector = document.querySelector("body");
+let cartProducts;
 let product = {};
 let counter = "";
 let findPro = {};
-
+setInterval(() => {
+  cartProducts = JSON.parse(localStorage.getItem("cart-products")) ?? [];
+}, 3000);
 // ================================================================== display product =========================================================
 
 callBack("../products.json").then((res) => {
@@ -17,7 +18,12 @@ callBack("../products.json").then((res) => {
       <div class="row g-0 gap-5 || product-box">
       <div class="col-12 col-md-6 d-flex gap-1 || images__Con">
         <div class="d-flex flex-column gap-1 || small__image-con">
-        ${findPro.image.map((image) => `<img class="sm-img" src=${image} alt="" height="100px" />`).join("")}                </div>
+        ${findPro.image
+          .map(
+            (image) =>
+              `<img class="sm-img" src=${image} alt="" height="100px" />`
+          )
+          .join("")}                </div>
         <div class="product__image flex-grow-1">
           <img src=${findPro.image[0]} alt="" />
         </div>
@@ -34,12 +40,19 @@ callBack("../products.json").then((res) => {
           <div class="product__color my-2">
             <p>اللون</p>
             <div class="d-flex gap-2">
-            ${findPro.colors.map((color) => `<div style="background-color: ${color};"class="color"></div>`).join("")}</div>
+            ${findPro.colors
+              .map(
+                (color) =>
+                  `<div style="background-color: ${color};"class="color"></div>`
+              )
+              .join("")}</div>
           </div>
           <div class="product__size my-2">
             <p>المقاس</p>
             <div class="d-flex gap-2">
-            ${findPro.sizes.map((size) => `<div class="size">${size}</div>`).join("")}</div>
+            ${findPro.sizes
+              .map((size) => `<div class="size">${size}</div>`)
+              .join("")}</div>
           </div>
           <div class="addToCart my-2">
             <div class="d-flex gap-0 gap-sm-2 align-items-center">
@@ -53,10 +66,15 @@ callBack("../products.json").then((res) => {
               </div>
             </div>
             <div class="my-3" >
-              <span class="p-2 addProdToWishList"onclick="handleWishList(${findPro.id})" >
+              <span class="p-2 addProdToWishList"onclick="handleWishList(${
+                findPro.id
+              })" >
                 <i class="fa-regular fa-heart"></i> إضافة إلى المفضلة 
               </span>
             </div>
+            <div class="my-3" >
+            <span class="p-2">التصنيفات: ${findPro.categories}</span>
+          </div>
           </div>
         </div>
       </div>
@@ -72,12 +90,13 @@ callBack("../products.json").then((res) => {
       errorPage(product__container);
     }
   }
-})
+});
 
 // ================================================================== product on click events =========================================================
 
 btnSelector.addEventListener("click", (e) => {
-// ================== decrease Btn event ======================
+
+  // ================== decrease Btn event ======================
 
   counter = document.querySelector(".quantity-counter");
   if (e.target.closest(".decreaseBtn")) {
@@ -85,12 +104,12 @@ btnSelector.addEventListener("click", (e) => {
       counter.textContent -= 1;
     }
   }
-// ==================== increase Btn event ====================
+  // ==================== increase Btn event ====================
 
   if (e.target.closest(".increaseBtn")) {
     counter.textContent = +counter.textContent + 1;
   }
-// ================== product size Btn event ==================
+  // ================== product size Btn event ==================
 
   if (e.target.closest(".product__size")) {
     if (e.target.closest(".product__size .size")) {
@@ -100,7 +119,7 @@ btnSelector.addEventListener("click", (e) => {
       if (
         e.target.closest(".product__size .size").classList.contains("active")
       ) {
-        delete product.size
+        delete product.size;
         return e.target
           .closest(".product__size .size")
           .classList.remove("active");
@@ -114,7 +133,7 @@ btnSelector.addEventListener("click", (e) => {
     return product;
   }
 
-// ==================== product color Btn event =====================
+  // ==================== product color Btn event =====================
 
   if (e.target.closest(".product__color")) {
     if (e.target.closest(".product__color .color")) {
@@ -124,7 +143,7 @@ btnSelector.addEventListener("click", (e) => {
       if (
         e.target.closest(".product__color .color").classList.contains("active")
       ) {
-        delete product.color
+        delete product.color;
         return e.target
           .closest(".product__color .color")
           .classList.remove("active");
@@ -135,14 +154,13 @@ btnSelector.addEventListener("click", (e) => {
       e.target.closest(".product__color .color").classList.add("active");
       const color = e.target.closest(".product__color .color").style[
         "background-color"
-
       ];
       product.color = color;
     }
     return product;
   }
 
-// ==================== product image toggle event =====================
+  // ==================== product image toggle event =====================
 
   if (e.target.closest(".small__image-con")) {
     if (e.target.closest(".small__image-con .sm-img")) {
@@ -150,14 +168,20 @@ btnSelector.addEventListener("click", (e) => {
       product__image.src = e.target.closest(".small__image-con .sm-img").src;
     }
   }
-// ================== add product to cart Btn event =====================
+  // ================== add product to cart Btn event =====================
 
   if (e.target.closest(".addToCartBtn ")) {
     if (product.size && product.color) {
       const newProduct = { ...findPro };
-      const findProd = cartProducts.find((ele) => ele.id == newProduct.id && ele.sizes == product.size && ele.colors == product.color);
-      let cartId = cartProducts.length === 0 ? 1 : cartProducts.at(-1).cart_id + 1;
-
+      const findProd = cartProducts.find(
+        (ele) =>
+          ele.id == newProduct.id &&
+          ele.sizes == product.size &&
+          ele.colors == product.color
+      );
+      let cartId =
+        cartProducts.length === 0 ? 1 : cartProducts.at(-1).cart_id + 1;
+      counter.textContent = "1";
       setTimeout(() => {
         let cartModal = document.getElementById("cart__menu");
         cartModal.classList.add("active");
@@ -167,7 +191,6 @@ btnSelector.addEventListener("click", (e) => {
         findProd.quantity += +counter.textContent;
         sendDataToLocalStorage("cart-products", cartProducts);
         notyf.success("تم تحديث بيانات السلة بنجاح");
-
       } else {
         newProduct.colors = product.color;
         newProduct.sizes = product.size;
@@ -186,19 +209,19 @@ btnSelector.addEventListener("click", (e) => {
 // ================================================================== active  & deActive Btn =========================================================
 
 function activeBtn(btn) {
-  btn.classList.add("active")
-  btn.textContent = "إضافة إلي السلة"
+  btn.classList.add("active");
+  btn.textContent = "إضافة إلي السلة";
 }
 function deActiveBtn(btn) {
-  btn.classList.remove("active")
-  btn.textContent = "إختر اللون / المقاس"
+  btn.classList.remove("active");
+  btn.textContent = "إختر اللون / المقاس";
 }
 setInterval(() => {
-  const btn = document.querySelector(".addToCartBtn button")
+  const btn = document.querySelector(".addToCartBtn button");
 
   if (product.color && product.size) {
-    activeBtn(btn)
+    activeBtn(btn);
   } else {
-    deActiveBtn(btn)
+    deActiveBtn(btn);
   }
-}, 1000);
+}, 1500);

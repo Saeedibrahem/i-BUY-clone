@@ -3,23 +3,21 @@ const userData = JSON.parse(localStorage.getItem("userData")) ?? [];
 const accountForm = document.getElementById("accountForm");
 let userFormData = { ...user };
 
-// ================================================================== DOM load check =========================================================
+// ============================================================== DOM load check =========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!JSON.parse(localStorage.getItem("login"))) {
     const container = document.querySelector(".account__dashboard ")
     errorPage(container)
   } else {
-    // let user = JSON.parse(localStorage.getItem("login"));
     let userName = JSON.parse(localStorage.getItem("login")).email.split("@")[0];
-
     document.getElementById("userName").textContent = user?.username ? user.username : userName;
     document.getElementById("validationDefaultUsername").value = user?.username ? user.username : userName;
     document.getElementById("validationDefault03").value = user.email;
   }
 });
 
-// ================================================================== logOut click event =========================================================
+// ========================================================== logOut click event =========================================================
 
 document.querySelector(".logOut").addEventListener("click", () => {
   if (location.pathname.includes("myAccount")) {
@@ -29,7 +27,7 @@ document.querySelector(".logOut").addEventListener("click", () => {
   }
 });
 
-// ================================================================== form edit account info events =========================================================
+// ======================================================== form edit account info events =========================================================
 
 
 accountForm.addEventListener("submit", (e) => {
@@ -67,7 +65,6 @@ accountForm.addEventListener("submit", (e) => {
   }
 });
 
-
 // ================================================================== logOut func =========================================================
 
 const loggedOut = () => {
@@ -76,7 +73,7 @@ const loggedOut = () => {
   wishlistCounter.textContent = "0";
   setTimeout(() => {
     location.href = "/login.html";
-  }, 2000);
+  }, 2500);
 };
 
 // ================================================================== save Changes func =========================================================
