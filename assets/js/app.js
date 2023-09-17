@@ -280,7 +280,7 @@ const errorPage = (element) => {
   element.innerHTML = `
   <div class="error__404 m-auto text-center active" >
     <div class="">
-           <img src="./assets/images/error404.png" alt="" height="400px">
+      <img src="./assets/images/error404.png" alt="" height="400px">
     </div>
     <h3>لا يمكن العثور على الصفحة</h3>
   </div>
@@ -305,7 +305,7 @@ const passwordValidation = (target) => {
   }
   if (lower.test(target.password.value)) {
   } else {
-    notyf.error("  كلمة المرور لا تحتوي على حرف صغير");
+    return notyf.error("  كلمة المرور لا تحتوي على حرف صغير");
   }
   if (upper.test(target.password.value)) {
   } else {
