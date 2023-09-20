@@ -817,7 +817,7 @@ form.active .remper__password {
 .addToWishList span {
   position: absolute;
   right: 0;
-  width: 90px;
+  width: 100px;
   transform: translateX(101%);
   opacity: 0;
   font-size: 80%;
@@ -825,6 +825,7 @@ form.active .remper__password {
   padding: 2px 4px;
   color: white;
   transition: all 0.2s ease;
+  z-index: 3;
 }
 .addToWishList:hover span {
   opacity: 0.9;
@@ -843,7 +844,11 @@ form.active .remper__password {
   top: 6px;
   right: 6px;
   font-size: 12px;
-  z-index: 9;
+  z-index: 2;
+}
+.allProducts .product-offer{
+  padding: 5px 8px !important;
+
 }
 .new__price {
   color: #25af51;

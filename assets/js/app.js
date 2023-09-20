@@ -49,8 +49,7 @@ callBack("../products.json")
           slider.innerHTML += `<div class="item">
           <div class="addToWishList" onclick="handleWishList(${product.id})">
             <i class="fa-regular fa-heart"></i>
-            <span class="addWish d-block"id="addWish" >إضافة للمفضلة</span>
-            <span class="removeWish d-none"id="removeWish" >حذف من المفضلة</span>
+            <span class="addWish " >إضافة للمفضلة</span>
           </div>
           <div ">
           <div class=" imgProduct ||product-image">
@@ -421,13 +420,13 @@ const handleWishList = (id) => {
       sendDataToLocalStorage("userWishlist", userWishlist);
       notyf.success("تم إضافة المنتج إلى المفضلة");
       handleWishListCounter();
-      setInterval(() => {
-        if(findProduct){
-          const added = document.querySelector(".addToWishList")
-          added.classList.add("active")
-        }
-      }, 1000);
-      // addedToWishlit()
+      // setInterval(() => {
+      //   if(findProduct){
+      //     const added = document.querySelector(".addToWishList")
+      //     added.classList.add("active")
+      //   }
+      // }, 1000);
+      addedToWishlit()
     }
   } else {
     openPopup()
@@ -442,6 +441,8 @@ const removedFromWishlit = () =>{
   btnSelector.addEventListener("click" , e =>{
     if(e.target.closest(".addToWishList")){
       e.target.closest(".addToWishList").classList.remove("active")
+      let sss = e.target.closest(".addToWishList").querySelector(".addToWishList .addWish")
+      sss.textContent = "إضافه للمفضلة"
     }
   })
 }
@@ -449,9 +450,12 @@ const addedToWishlit = () =>{
   btnSelector.addEventListener("click" , e =>{
     if(e.target.closest(".addToWishList")){
       e.target.closest(".addToWishList").classList.add("active")
+      let sss = e.target.closest(".addToWishList").querySelector(".addToWishList .addWish")
+      sss.textContent = "حذف من المفضلة"
     }
   })
 }
+
 // ================================================================== search bar input events =========================================================
 
 searchInput.addEventListener("keyup", () => {
