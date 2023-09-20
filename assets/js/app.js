@@ -41,7 +41,7 @@ const callBack = async (url) => {
 callBack("../products.json")
   .then((res) => {
     renderedProduct = res.products;
-    if (location.pathname === "/" || location.pathname.includes("index")) {
+    if (location.pathname === "/" || location.pathname.includes("index") || location.pathname.includes("shop")) {
       const productSlider = document.querySelectorAll(".products-slider");
       productSlider.forEach((slider) => {
         slider.innerHTML = "";
@@ -52,8 +52,9 @@ callBack("../products.json")
             <span class="addWish d-block"id="addWish" >إضافة للمفضلة</span>
             <span class="removeWish d-none"id="removeWish" >حذف من المفضلة</span>
           </div>
+          <div ">
+          <div class=" imgProduct ||product-image">
           <a href="/product.html?${product.id}">
-          <div class="position-relative || imgProduct ||product-image">
           <div class="product-offer">وفر ${parseInt(
             ((product.old_price - product.price) * 100) / product.old_price
           )}%</div>
@@ -62,8 +63,11 @@ callBack("../products.json")
               ? `<img src=${product.image[1]} alt="" class="img2"/>`
               : ` <img src=${product.image[0]} alt="" class="img2"/>`
             }
+          </a>
+          
             </div>
             <div class="product__info">
+            <a href="/product.html?${product.id}">
             <div class="position-relative">
             <span class="hint--top hint--medium position-absolute w-100 z-1 hintPos"  aria-label="${product.name.ar
             }">
@@ -71,7 +75,8 @@ callBack("../products.json")
             </span>
             <h3 class="overLap">${product.name.ar}</h3>
           </div>
-            <p>
+          </a>
+            <p class="price22">
             <span class="new__price">${product.price} جنيه</span>
             <span class="old__price">${product.old_price} جنيه</span>
             </p>
@@ -83,7 +88,7 @@ callBack("../products.json")
               .join("")}
             </div>
             </div>
-          </a>
+          </div>
             </div>
             `;
         });
@@ -410,11 +415,19 @@ const handleWishList = (id) => {
       sendDataToLocalStorage("userWishlist", userWishlist);
       notyf.error("تم حذف المنتج من المفضلة");
       handleWishListCounter();
+      removedFromWishlit()
     } else {
       userWishlist.push(findmy);
       sendDataToLocalStorage("userWishlist", userWishlist);
       notyf.success("تم إضافة المنتج إلى المفضلة");
       handleWishListCounter();
+      setInterval(() => {
+        if(findProduct){
+          const added = document.querySelector(".addToWishList")
+          added.classList.add("active")
+        }
+      }, 1000);
+      // addedToWishlit()
     }
   } else {
     openPopup()
@@ -424,6 +437,21 @@ const handleWishList = (id) => {
   }
 };
 
+
+const removedFromWishlit = () =>{
+  btnSelector.addEventListener("click" , e =>{
+    if(e.target.closest(".addToWishList")){
+      e.target.closest(".addToWishList").classList.remove("active")
+    }
+  })
+}
+const addedToWishlit = () =>{
+  btnSelector.addEventListener("click" , e =>{
+    if(e.target.closest(".addToWishList")){
+      e.target.closest(".addToWishList").classList.add("active")
+    }
+  })
+}
 // ================================================================== search bar input events =========================================================
 
 searchInput.addEventListener("keyup", () => {
@@ -532,7 +560,7 @@ const displayCart = () => {
     setTimeout(() => {
       let cartModal = document.getElementById("cart__menu");
       cartModal.classList.remove("active");
-    }, 2000);
+    }, 3000);
 
   }
 };

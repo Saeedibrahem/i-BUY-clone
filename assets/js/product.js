@@ -185,7 +185,7 @@ btnSelector.addEventListener("click", (e) => {
       setTimeout(() => {
         let cartModal = document.getElementById("cart__menu");
         cartModal.classList.add("active");
-      }, 2500);
+      }, 2000);
 
       if (findProd) {
         findProd.quantity += +counter.textContent;
