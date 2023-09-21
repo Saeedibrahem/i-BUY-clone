@@ -1,17 +1,18 @@
 // ================================================================== display Wishlist check =========================================================
-
-let userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];
 const wishlistData = document.querySelector(".wishlist__data");
+setInterval(() => {
+  let userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];
+}, 1000);
 if (userWishlist.length == 0) {
   wishlistEmpty();
 } else {
   displayWishlist();
 }
-
 // ================================================================== display products in Wishlist func =========================================================
 
 function displayWishlist() {
-  wishlistCounter.textContent = userWishlist.length;
+  handleWishListCounter();
+  const day = new Date().getDate();
   wishlistData.innerHTML = "";
   userWishlist.map((ele) => {
     wishlistData.innerHTML += `
@@ -40,7 +41,7 @@ function displayWishlist() {
       <span class="old__price ">${ele.old_price} جنيه</span>
       <span class="new__price">${ele.price} جنيه</span>
     </div>
-    <div class="product-date p-3"><span>أغسطس 29, 2023</span></div>
+    <div class="product-date p-3"><span>${day} سبتمبر , 2023</span></div>
     <div class="product-stock p-3">
       <i class="fa-solid fa-check"></i> <span>متوفر بالمخزون</span>
     </div>
@@ -53,7 +54,9 @@ function displayWishlist() {
 const removeBtns = document.querySelector("body");
 removeBtns.addEventListener("click", (e) => {
   if (e.target.closest(".product-remove")) {
-    userWishlist = userWishlist.filter((ele) => ele.id !== +e.target.closest(".product-remove").id);
+    userWishlist = userWishlist.filter(
+      (ele) => ele.id !== +e.target.closest(".product-remove").id
+    );
     sendDataToLocalStorage("userWishlist", userWishlist);
     displayWishlist();
     notyf.error("تم حذف المنتج من المفضلة");

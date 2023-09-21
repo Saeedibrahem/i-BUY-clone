@@ -181,7 +181,6 @@ btnSelector.addEventListener("click", (e) => {
       );
       let cartId =
         cartProducts.length === 0 ? 1 : cartProducts.at(-1).cart_id + 1;
-      counter.textContent = "1";
       setTimeout(() => {
         let cartModal = document.getElementById("cart__menu");
         cartModal.classList.add("active");

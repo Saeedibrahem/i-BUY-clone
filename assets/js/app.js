@@ -137,7 +137,7 @@ callBack("../products.json")
 // ======================================================= DOM load functions  ======================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (location.pathname.includes("wishlist")) {
+  if (location.pathname.includes("wishlist") || location.pathname.includes("myAccount")) {
     if (JSON.parse(localStorage.getItem("login"))) {
       loadingDone();
       addIsLogin();
@@ -269,13 +269,12 @@ clickToClose.forEach((ele) => {
   });
 });
 
+const popup = document.getElementById("popup");
 const openPopup = ()=>{
-  let element = document.getElementById("popup");
-  element.classList.add("active")
+  popup.classList.add("active")
 }
 const closePopup = ()=>{
-  let element = document.getElementById("popup");
-  element.classList.remove("active")
+  popup.classList.remove("active")
 }
 
 // ==================== error page function =================
@@ -291,7 +290,7 @@ const errorPage = (element) => {
     `;
   setTimeout(() => {
     location.href = "/";
-  }, 3000);
+  }, 4000);
 };
 
 // ================== password validation func =============
@@ -561,10 +560,10 @@ const displayCart = () => {
       `;
   } else {
     cartEmpty(cartContainer);
-    setTimeout(() => {
-      let cartModal = document.getElementById("cart__menu");
-      cartModal.classList.remove("active");
-    }, 3000);
+    // setTimeout(() => {
+    //   let cartModal = document.getElementById("cart__menu");
+    //   cartModal.classList.remove("active");
+    // }, 3000);
 
   }
 };

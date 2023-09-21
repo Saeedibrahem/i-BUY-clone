@@ -5,12 +5,12 @@ let userFormData = { ...user };
 
 // ============================================================== DOM load check =========================================================
 
+let userName = JSON.parse(localStorage.getItem("login")).email.split("@")[0];
 document.addEventListener("DOMContentLoaded", () => {
   if (!JSON.parse(localStorage.getItem("login"))) {
     const container = document.querySelector(".account__dashboard ")
     errorPage(container)
   } else {
-    let userName = JSON.parse(localStorage.getItem("login")).email.split("@")[0];
     document.getElementById("userName").textContent = user?.username ? user.username : userName;
     document.getElementById("validationDefaultUsername").value = user?.username ? user.username : userName;
     document.getElementById("validationDefault03").value = user.email;
@@ -79,6 +79,7 @@ const loggedOut = () => {
 // ================================================================== save Changes func =========================================================
 
 const saveChanges = (e) => {
+  document.getElementById("userName").textContent = user.username ;
   const newUserData = userData.filter((ele) => ele.email !== user.email);
   newUserData.push(userFormData);
   localStorage.setItem("login", JSON.stringify(userFormData));
