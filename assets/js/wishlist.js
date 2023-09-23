@@ -1,4 +1,5 @@
 // ================================================================== display Wishlist check =========================================================
+
 const wishlistData = document.querySelector(".wishlist__data");
 setInterval(() => {
   let userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];

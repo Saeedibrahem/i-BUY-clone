@@ -5,7 +5,7 @@ let userFormData = { ...user };
 
 // ============================================================== DOM load check =========================================================
 
-let userName = JSON.parse(localStorage.getItem("login")).email.split("@")[0];
+let userName = JSON.parse(localStorage.getItem("login"))?.email.split("@")[0];
 document.addEventListener("DOMContentLoaded", () => {
   if (!JSON.parse(localStorage.getItem("login"))) {
     const container = document.querySelector(".account__dashboard ")
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("userName").textContent = user?.username ? user.username : userName;
     document.getElementById("validationDefaultUsername").value = user?.username ? user.username : userName;
     document.getElementById("validationDefault03").value = user.email;
+    handleWishListCounter();
   }
 });
 

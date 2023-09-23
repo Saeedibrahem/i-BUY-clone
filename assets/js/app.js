@@ -22,7 +22,6 @@ const wishlistCounter = document.querySelector(".wishlist-counter");
 const btnSelector = document.querySelector("body");
 let renderedProduct = [];
 
-
 // ================================================================== fetch func  =========================================================
 
 const callBack = async (url) => {
@@ -41,57 +40,12 @@ const callBack = async (url) => {
 callBack("../products.json")
   .then((res) => {
     renderedProduct = res.products;
-    if (location.pathname === "/" || location.pathname.includes("index") || location.pathname.includes("shop")) {
-      const productSlider = document.querySelectorAll(".products-slider");
-      productSlider.forEach((slider) => {
-        slider.innerHTML = "";
-        res.products.forEach((product) => {
-          slider.innerHTML += `<div class="item">
-          <div class="addToWishList" onclick="handleWishList(${product.id})">
-            <i class="fa-regular fa-heart"></i>
-            <span class="addWish " >إضافة للمفضلة</span>
-          </div>
-          <div ">
-          <div class=" imgProduct ||product-image">
-          <a href="/product.html?${product.id}">
-          <div class="product-offer">وفر ${parseInt(
-            ((product.old_price - product.price) * 100) / product.old_price
-          )}%</div>
-          
-            <img src=${product.image[0]}  alt=""    class="img1"/> ${product.image[1]
-              ? `<img src=${product.image[1]} alt="" class="img2"/>`
-              : ` <img src=${product.image[0]} alt="" class="img2"/>`
-            }
-          </a>
-          
-            </div>
-            <div class="product__info">
-            <a href="/product.html?${product.id}">
-            <div class="position-relative">
-            <span class="hint--top hint--medium position-absolute w-100 z-1 hintPos"  aria-label="${product.name.ar
-            }">
-            <span class="opacity-0">${product.name.ar}</span>
-            </span>
-            <h3 class="overLap">${product.name.ar}</h3>
-          </div>
-          </a>
-            <p class="price22">
-            <span class="new__price">${product.price} جنيه</span>
-            <span class="old__price">${product.old_price} جنيه</span>
-            </p>
-            <div class="colors">${product.colors
-              .map(
-                (color) =>
-                  `<div style="background-color: ${color};" class="black__color"></div>`
-              )
-              .join("")}
-            </div>
-            </div>
-          </div>
-            </div>
-            `;
-        });
-      });
+    if (
+      location.pathname === "/" ||
+      location.pathname.includes("index") ||
+      location.pathname.includes("shop")
+    ) {
+      displayProducts();
     }
   })
   .then(() => {
@@ -134,15 +88,37 @@ callBack("../products.json")
     }
   });
 
+// ======================================================= filter products function  ======================================================
+
+if (location.pathname.includes("shop")) {
+  document.querySelector(".orderby").addEventListener("change", (e) => {
+    if (e.target.value === "top") {
+      renderedProduct = renderedProduct.sort((e, b) => b.price - e.price);
+      setTimeout(() => {
+        displayProducts();
+      }, 1000);
+    }
+    if (e.target.value === "bottom") {
+      renderedProduct = renderedProduct.sort((e, b) => e.price - b.price);
+      setTimeout(() => {
+        displayProducts();
+      }, 1000);
+    }
+  });
+}
+
 // ======================================================= DOM load functions  ======================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (location.pathname.includes("wishlist") || location.pathname.includes("myAccount")) {
+  if (location.pathname.includes("wishlist")) {
     if (JSON.parse(localStorage.getItem("login"))) {
       loadingDone();
       addIsLogin();
     } else {
       removeIsLogin();
+      loadingDone();
+      const container = document.querySelector(".wishlist__container");
+      errorPage(container)
     }
   } else {
     setWishlistHrefToLogin();
@@ -156,8 +132,76 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-
+if (location.pathname === "/" || location.pathname.includes("shop") || location.pathname.includes("index")) {
+  setInterval(() => {
+    userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];
+    userWishlist.forEach((e) => {
+      document.getElementById(e.id).classList.add("active");
+      document.getElementById(e.id).querySelector(".addWish").textContent =
+        "حذف من المفضلة";
+    });
+  }, 1000);
+}
 // ======================================================= global functions  ======================================================
+
+// ==================== Display function =================
+
+const displayProducts = () => {
+  const productSlider = document.querySelectorAll(".products-slider");
+  productSlider.forEach((slider) => {
+    slider.innerHTML = "";
+    renderedProduct.forEach((product) => {
+      slider.innerHTML += `<div class="item">
+      <div class="addToWishList" id=${product.id} onclick="handleWishList(${
+        product.id
+      })">
+        <i class="fa-regular fa-heart"></i>
+        <span class="addWish " >إضافة للمفضلة</span>
+      </div>
+      <div ">
+      <div class=" imgProduct ||product-image">
+      <a href="/product.html?${product.id}">
+      <div class="product-offer">وفر ${parseInt(
+        ((product.old_price - product.price) * 100) / product.old_price
+      )}%</div>
+      
+        <img src=${product.image[0]}  alt=""    class="img1"/> ${
+        product.image[1]
+          ? `<img src=${product.image[1]} alt="" class="img2"/>`
+          : ` <img src=${product.image[0]} alt="" class="img2"/>`
+      }
+      </a>
+      
+        </div>
+        <div class="product__info">
+        <a href="/product.html?${product.id}">
+        <div class="position-relative">
+        <span class="hint--top hint--medium position-absolute w-100 z-1 hintPos"  aria-label="${
+          product.name.ar
+        }">
+        <span class="opacity-0">${product.name.ar}</span>
+        </span>
+        <h3 class="overLap">${product.name.ar}</h3>
+      </div>
+      </a>
+        <p class="price22">
+        <span class="new__price">${product.price} جنيه</span>
+        <span class="old__price">${product.old_price} جنيه</span>
+        </p>
+        <div class="colors">${product.colors
+          .map(
+            (color) =>
+              `<div style="background-color: ${color};" class="black__color"></div>`
+          )
+          .join("")}
+        </div>
+        </div>
+      </div>
+        </div>
+        `;
+    });
+  });
+};
 
 // ==================== user is login function =================
 
@@ -270,12 +314,12 @@ clickToClose.forEach((ele) => {
 });
 
 const popup = document.getElementById("popup");
-const openPopup = ()=>{
-  popup.classList.add("active")
-}
-const closePopup = ()=>{
-  popup.classList.remove("active")
-}
+const openPopup = () => {
+  popup.classList.add("active");
+};
+const closePopup = () => {
+  popup.classList.remove("active");
+};
 
 // ==================== error page function =================
 
@@ -290,7 +334,7 @@ const errorPage = (element) => {
     `;
   setTimeout(() => {
     location.href = "/";
-  }, 4000);
+  }, 4500);
 };
 
 // ================== password validation func =============
@@ -406,54 +450,51 @@ if (!location.pathname.includes("myAccount")) {
 const handleWishList = (id) => {
   if (document.querySelector("body").classList.contains("isLogin")) {
     const findmy = renderedProduct.find((e) => e.id === id);
-    const findProduct = userWishlist.find((e) => e.id === id);
+    const findProduct = userWishlist?.find((e) => e.id === id);
 
     if (findProduct) {
       userWishlist = userWishlist.filter((e) => e.id !== id);
       sendDataToLocalStorage("userWishlist", userWishlist);
       notyf.error("تم حذف المنتج من المفضلة");
       handleWishListCounter();
-      removedFromWishlit()
+      removedFromWishlit();
     } else {
       userWishlist.push(findmy);
       sendDataToLocalStorage("userWishlist", userWishlist);
       notyf.success("تم إضافة المنتج إلى المفضلة");
       handleWishListCounter();
-      // setInterval(() => {
-      //   if(findProduct){
-      //     const added = document.querySelector(".addToWishList")
-      //     added.classList.add("active")
-      //   }
-      // }, 1000);
-      addedToWishlit()
+      addedToWishlit();
     }
   } else {
-    openPopup()
+    openPopup();
     setTimeout(() => {
-    closePopup()
+      closePopup();
     }, 4500);
   }
 };
 
-
-const removedFromWishlit = () =>{
-  btnSelector.addEventListener("click" , e =>{
-    if(e.target.closest(".addToWishList")){
-      e.target.closest(".addToWishList").classList.remove("active")
-      let sss = e.target.closest(".addToWishList").querySelector(".addToWishList .addWish")
-      sss.textContent = "إضافه للمفضلة"
+const removedFromWishlit = () => {
+  btnSelector.addEventListener("click", (e) => {
+    if (e.target.closest(".addToWishList")) {
+      e.target.closest(".addToWishList").classList.remove("active");
+      let sss = e.target
+        .closest(".addToWishList")
+        .querySelector(".addToWishList .addWish");
+      sss.textContent = "إضافه للمفضلة";
     }
-  })
-}
-const addedToWishlit = () =>{
-  btnSelector.addEventListener("click" , e =>{
-    if(e.target.closest(".addToWishList")){
-      e.target.closest(".addToWishList").classList.add("active")
-      let sss = e.target.closest(".addToWishList").querySelector(".addToWishList .addWish")
-      sss.textContent = "حذف من المفضلة"
+  });
+};
+const addedToWishlit = () => {
+  btnSelector.addEventListener("click", (e) => {
+    if (e.target.closest(".addToWishList")) {
+      e.target.closest(".addToWishList").classList.add("active");
+      let sss = e.target
+        .closest(".addToWishList")
+        .querySelector(".addToWishList .addWish");
+      sss.textContent = "حذف من المفضلة";
     }
-  })
-}
+  });
+};
 
 // ================================================================== search bar input events =========================================================
 
@@ -552,19 +593,14 @@ const displayCart = () => {
     checkout.innerHTML = `
       <div class="checkout__box">
       <p class="d-flex justify-content-between"><strong>المجموع:</strong><span>${totalPrice.toFixed(
-      2
-    )} جنيه</span></p>
+        2
+      )} جنيه</span></p>
       <button class="btn hoverMeNowHot"> إتمام الطلب </button>
       <a href="/" class="btn home__btn">تابع التسوق</a>
     </div>
       `;
   } else {
     cartEmpty(cartContainer);
-    // setTimeout(() => {
-    //   let cartModal = document.getElementById("cart__menu");
-    //   cartModal.classList.remove("active");
-    // }, 3000);
-
   }
 };
 setInterval(() => {
@@ -576,7 +612,9 @@ setInterval(() => {
 btnSelector.addEventListener("click", (e) => {
   if (e.target.closest(".remove__btn")) {
     if (cartProducts.length !== 0) {
-      cartProducts = cartProducts.filter((ele) => ele.cart_id !== +e.target.closest(".remove__btn").id);
+      cartProducts = cartProducts.filter(
+        (ele) => ele.cart_id !== +e.target.closest(".remove__btn").id
+      );
       sendDataToLocalStorage("cart-products", cartProducts);
       notyf.error("تم حذف المنتج من السلة");
     } else {

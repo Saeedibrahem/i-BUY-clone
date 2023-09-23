@@ -3,6 +3,7 @@ let cartProducts;
 let product = {};
 let counter = "";
 let findPro = {};
+let userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];
 setInterval(() => {
   cartProducts = JSON.parse(localStorage.getItem("cart-products")) ?? [];
 }, 3000);
@@ -66,11 +67,13 @@ callBack("../products.json").then((res) => {
               </div>
             </div>
             <div class="my-3" >
-              <span class="p-2 addProdToWishList"onclick="handleWishList(${
-                findPro.id
-              })" >
-                <i class="fa-regular fa-heart"></i> إضافة إلى المفضلة 
-              </span>
+            <div class="addProdToWishList " id=${
+              findPro.id
+            } onclick="handleWishList(${findPro.id})">
+              <i class="fa-regular fa-heart "></i>
+              <span class="addWish " >إضافة للمفضلة</span>
+            </div>
+              
             </div>
             <div class="my-3" >
             <span class="p-2">التصنيفات: ${findPro.categories}</span>
@@ -92,10 +95,26 @@ callBack("../products.json").then((res) => {
   }
 });
 
+// ================================================================== added to wishlist =========================================================
+setInterval(() => {
+  userWishlist = JSON.parse(localStorage.getItem("userWishlist")) ?? [];
+  const findPro = userWishlist.find(
+    (ele) => ele.id === +document.querySelector(".addProdToWishList").id
+  );
+  if (findPro) {
+    document.querySelector(".addProdToWishList").classList.add("active");
+    document.querySelector(".addProdToWishList span").textContent =
+      "حذف من المفضلة";
+  } else {
+    document.querySelector(".addProdToWishList span").textContent =
+      "إضافة للمفضلة";
+    document.querySelector(".addProdToWishList").classList.remove("active");
+  }
+}, 1000);
+
 // ================================================================== product on click events =========================================================
 
 btnSelector.addEventListener("click", (e) => {
-
   // ================== decrease Btn event ======================
 
   counter = document.querySelector(".quantity-counter");

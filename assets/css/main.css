@@ -1133,7 +1133,7 @@ select.orderby{
   border-radius: 9px;
   overflow: hidden;
 }
-.addToWishList.active {
+.addToWishList.active , .addProdToWishList.active i{
   background-color: var(--second-color) !important;
   color: #ffffffcc;
 }
